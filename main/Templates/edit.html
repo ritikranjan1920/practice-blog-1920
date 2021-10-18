@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+
+<body onload="initiateDocs();">
+	<div class="container" style="margin-top:5rem">
+		<div class="row">
+			<div class="col-7">
+				<H1>Title</H1>
+				<input class="form-input" type="text">
+				<br>
+				<br>
+				<br>
+				<H1>Content</H1>
+				<div class="sample-toolbar">
+					<select class="selector" onchange="format('formatblock',this[this.selectedIndex].value);">
+						<option value="p">Paragraph</option>
+						<option value="h2">Heading</option>
+						<option value="h3">Sub-heading</option>
+					</select>
+					<button class="top-button" onclick="format('bold');"><i class="fa fa-bold"></i></button>
+					<button class="top-button" onclick="format('italic');"><i class="fa fa-italic"></i></button>
+					<button class="top-button" onclick="format('insertunorderedlist');"><i class="fa fa-list"></i></button>
+					<button class="top-button" onclick="format('insertorderedlist');"><i class="fa fa-list-ol"></i></button>
+					<button class="top-button" onclick="setUrl();"><i class="fa fa-link"></i></button>
+					<span><input id="txtFormatUrl" placeholder="url" class="top-url"></span>
+					<input class="tool-items fa fa-file-image-o" type="file" accept="image/png, image/jpeg" id="file" style="display: none;" onchange="setImage();">
+					<button onclick="$('#file').trigger('click');" class="btn top-button" ><i class="fa fa-file-image"></i> </button>
+				</div>
+				<div class="editor content-paragraph" id="sampleeditor" contenteditable="true">
+					<p><br></p>
+				</div>
+			</div>
+			<div class="col-3">
+				Hello
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='edit.js') }}"></script>
+</body>
+</html>

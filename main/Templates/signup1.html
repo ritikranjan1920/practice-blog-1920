@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="body-body">
+    <div class="sign-container" id="container">
+        <div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<select class="custom-select">
+				<option value="0">Registration type:</option>
+				<option value="1">Student</option>
+				<option value="2">Faulty</option>
+				<option value="3">CRC</option>
+			</select>
+			<input type="text" placeholder="Mobile Number" />
+			<input type="password" placeholder="Password" />
+			<input type="password" placeholder="Confirm Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+    </div>
+<script src="static/ma.js"></script>
+</body>
+</html>

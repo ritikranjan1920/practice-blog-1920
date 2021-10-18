@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+     <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+    {% if title %}
+        <title>LearningML - {{title}}</title>
+    {% else %}
+        <title>LearningML</title>
+    {% endif %}
+</HEAD>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:#01102f">
+          <h3><a class="navbar-brand mr-4" style="color:#ffffff" href="/">LearningML</a></h3>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+                <h4><a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a></h4>
+                <h4><a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a></h4>
+            </div>
+
+            <div class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <h4><a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a></h4>
+                    <h4><a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a></h4>
+                    <h4><a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a></h4>
+                {% else %}
+                    <h4><a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a></h4>
+                    <h4><a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a></h4>
+                {% endif %}
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+          </div>
+      </nav>
+        {% block head%}{% endblock%}
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+          {% block sidebar %}{% endblock %}
+
+      </div>
+    </main>
+
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <footer>
+        <div class="footer-bottom-area bg-dark-light section-padding-sm" style="padding:3rem">
+            <div class="container">
+                <div class="row widgets footer-widgets">
+                    <div >
+                        <div class="single-widget widget-about">
+                            <h5 class="widget-title">About Us</h5>
+                            <p>We are a team of machine learning and artificial intelligence enthusiasts who aim to help others in learning about the
+                            most trending career field i.e. Machine Learning and Artificial Intelligence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</HTML>
